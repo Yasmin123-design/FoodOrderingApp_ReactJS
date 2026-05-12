@@ -1,0 +1,69 @@
+.category-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.category-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.category-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  width: 100%;
+  padding: 1.5rem 1rem 1rem;
+  color: white;
+}
+
+.category-overlay h4 {
+  margin: 0 0 0.2rem 0;
+  font-size: 1.2rem;
+}
+
+.category-overlay p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.category-actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.items-count {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.action-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.edit-icon:hover {
+  color: var(--primary-color, #d35400);
+}
+
+.delete-icon:hover {
+  color: #dc3545;
+}

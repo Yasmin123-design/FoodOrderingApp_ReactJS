@@ -1,0 +1,7 @@
+/* Will reuse the .sidebar classes from AdminSidebar.css by default or create specific customer ones if needed. 
+   Since they use the same HTML structure, the styles from AdminSidebar might actually leak or be shared if we use standard class names. 
+   To be safe, we can just use the exact same classes so the layout matches perfectly. */
+
+.sidebar {
+  /* Inherits from AdminSidebar.css if it's not scoped, but just in case: */
+}

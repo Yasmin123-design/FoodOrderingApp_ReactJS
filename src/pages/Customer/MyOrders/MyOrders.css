@@ -1,0 +1,222 @@
+.customer-layout {
+  display: flex;
+  min-height: calc(100vh - 80px);
+  background-color: #f4f6f8;
+  direction: ltr;
+}
+
+.customer-content {
+  flex: 1;
+  padding: 2rem 3%;
+}
+
+.orders-header {
+  margin-bottom: 2rem;
+}
+
+.orders-header h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.orders-header p {
+  color: #666;
+}
+
+.myorders-stats-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.myorders-stat-card {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.light-red { background-color: #fee2e2; color: #ef4444; }
+.light-teal { background-color: #ccfbf1; color: #14b8a6; }
+.light-purple { background-color: #e0e7ff; color: #6366f1; }
+
+.stat-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.stat-text h3 {
+  margin: 0.2rem 0 0 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.myorders-table-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.table-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.table-header-row h3 {
+  margin: 0;
+  color: #333;
+}
+
+.myorders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.myorders-table th {
+  text-align: left;
+  padding: 1rem;
+  color: #666;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.myorders-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f5f5f5;
+  color: #444;
+  vertical-align: middle;
+}
+
+.fw-500 { font-weight: 500; }
+.fw-bold-red { font-weight: bold; color: #d35400; }
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.icon-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Badge colors are inherited from Menu.css or existing status-badge */
+.status-pill {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-pill.delivered { background-color: #e6f6ec; color: #2e7d32; }
+.status-pill.processing, .status-pill.pending { background-color: #ffebee; color: #c62828; }
+.status-pill.on_the_way { background-color: #e3f2fd; color: #1565c0; }
+
+.empty-table-cell {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
+
+.payment-proof-section {
+  grid-column: span 2;
+}
+
+.payment-proof-img {
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.items-heading {
+  margin-top: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.order-items-list {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-qty {
+  color: #888;
+  margin-left: 10px;
+}
+
+.order-total-summary {
+  text-align: right;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.total-val {
+  color: var(--primary-color, #d35400);
+}
+
+@media (max-width: 1024px) {
+  .myorders-stats-row {
+    flex-wrap: wrap;
+  }
+  
+  .myorders-stat-card {
+    min-width: calc(50% - 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .myorders-table-container {
+    overflow-x: auto;
+    padding: 1rem;
+  }
+  
+  .myorders-table {
+    min-width: 600px;
+  }
+  
+  .myorders-stat-card {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .stat-text h3 {
+    font-size: 1.2rem;
+  }
+}

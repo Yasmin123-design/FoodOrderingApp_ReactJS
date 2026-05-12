@@ -1,0 +1,389 @@
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.orders-header h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.orders-header p {
+  color: #666;
+}
+
+.export-btn {
+  background-color: var(--primary-color, #d35400);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.export-btn:hover {
+  opacity: 0.9;
+}
+
+/* Stats Section */
+.stats-container {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: white;
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.stat-info p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-info h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.trend {
+  font-size: 0.8rem;
+}
+
+.trend.positive {
+  color: #28a745;
+}
+
+.stat-icon {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.total-icon {
+  background-color: #ffe8d6;
+  color: var(--primary-color, #d35400);
+}
+
+.progress-bar {
+  height: 4px;
+  width: 100%;
+  background-color: #eee;
+  border-radius: 2px;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  border-radius: 2px;
+}
+
+.pending-bar::after {
+  width: 40%;
+  background-color: var(--primary-color, #d35400);
+}
+
+.active-bar::after {
+  width: 25%;
+  background-color: #17a2b8;
+}
+
+/* Table Section */
+.table-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  overflow: hidden;
+}
+
+.table-controls {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  width: 350px;
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  margin-left: 0.5rem;
+  width: 100%;
+}
+
+.filter-btn {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th {
+  background-color: #fafafa;
+  color: #666;
+  text-align: left;
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+}
+
+.orders-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.orders-table tbody tr:hover {
+  background-color: #fcfcfc;
+}
+
+.order-id {
+  font-weight: 500;
+  color: #333;
+}
+
+.time-ago {
+  display: block;
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.user-email {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.payment-info {
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.total-amount {
+  color: var(--primary-color, #d35400);
+  font-weight: 600;
+}
+
+.status-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.processing {
+  background-color: #fde8d7;
+  color: var(--primary-color, #d35400);
+}
+
+.status-badge.on_the_way {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-badge.delivered {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.action-btn:hover {
+  color: #333;
+}
+
+.table-footer {
+  padding: 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Modal Internal Styling */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.detail-section h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color, #d35400);
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.detail-section p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.items-heading {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.order-items-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed #ddd;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  background-color: #eee;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-details h5 {
+  margin: 0 0 0.3rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.item-ar {
+  font-weight: normal;
+  color: #777;
+}
+
+.item-price {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.item-subtotal {
+  font-weight: 600;
+  color: #333;
+}
+
+.order-total-summary {
+  margin-top: 2rem;
+  text-align: right;
+  padding-top: 1rem;
+  border-top: 2px solid #eee;
+}
+
+.order-total-summary h3 {
+  margin: 0;
+  color: #333;
+}
+
+.order-total-summary span {
+  color: var(--primary-color, #d35400);
+}

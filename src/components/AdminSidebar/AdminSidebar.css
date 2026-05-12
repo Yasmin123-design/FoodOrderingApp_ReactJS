@@ -1,0 +1,114 @@
+.admin-sidebar {
+  width: 250px;
+  background-color: #e9ecef;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  border-right: 1px solid #ddd;
+  direction: ltr; 
+  transition: transform 0.3s ease, visibility 0.3s ease;
+  z-index: 1001;
+}
+
+@media (max-width: 1024px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    visibility: hidden;
+    background-color: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar-backdrop.open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.sidebar-header {
+  padding: 0 2rem 2rem;
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+
+.sidebar-header p {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  gap: 1rem;
+}
+
+.nav-item:hover {
+  background-color: #f8f9fa;
+  color: var(--primary-color, #d35400);
+}
+
+.nav-item.active {
+  background-color: var(--primary-color, #d35400);
+  color: white;
+  border-radius: 0 25px 25px 0;
+  margin-right: 1rem;
+}
+
+/* RTL adjustment for active state */
+body[dir="rtl"] .nav-item.active {
+  border-radius: 25px 0 0 25px;
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+.sidebar-footer {
+  padding-top: 2rem;
+  border-top: 1px solid #ddd;
+}
+
+.portal-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.logout-item {
+  cursor: pointer;
+}

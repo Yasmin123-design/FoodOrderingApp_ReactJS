@@ -1,0 +1,319 @@
+.stats-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.stats-header-top h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.stats-header-top p {
+  color: #666;
+}
+
+.stats-header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-secondary {
+  background-color: white;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #f8f9fa;
+}
+
+.btn-primary {
+  background-color: var(--primary-color, #d35400);
+  border: none;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* KPIs Top Row */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.kpi-icon-wrapper {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.kpi-content p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 0.2rem 0;
+}
+
+.kpi-content h3 {
+  color: #333;
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1;
+}
+
+.kpi-trend {
+  font-size: 0.85rem;
+  display: block;
+}
+
+.kpi-trend.positive { color: #17a2b8; } /* Matching the teal/greenish color from design */
+.kpi-trend.neutral { color: #666; }
+
+/* Bottom Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.chart-card, .source-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.chart-header p {
+  color: #666;
+  margin: 0 0 0.5rem 0;
+}
+
+.revenue-amount {
+  color: #a84200; /* Darker orange for the big number */
+  font-size: 3rem;
+  margin: 0;
+  line-height: 1;
+}
+
+/* CSS Chart Simulation */
+.chart-simulation {
+  position: relative;
+  height: 250px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.chart-y-lines {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.line {
+  height: 1px;
+  background-color: #f0f0f0;
+  width: 100%;
+}
+
+.chart-bars {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  padding: 0 1rem;
+}
+
+.bar {
+  width: 12%;
+  background-color: #e9ecef;
+  border-radius: 6px 6px 0 0;
+  min-height: 5px; /* So it's visible even when close to 0 */
+}
+
+.bar.active {
+  background-color: var(--primary-color, #d35400);
+}
+
+.chart-x-labels {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.revenue-warning {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.alert-icon {
+  color: #dc3545;
+  font-size: 1.2rem;
+}
+
+.revenue-warning p {
+  color: #555;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Source Card */
+.source-card h4 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.source-item {
+  margin-bottom: 1.5rem;
+}
+
+.source-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.source-progress {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.source-progress .fill {
+  height: 100%;
+  background-color: #ddd;
+  border-radius: 4px;
+}
+
+.pro-tip {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2.5rem;
+}
+
+.pro-tip p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.pro-tip h5 {
+  color: var(--primary-color, #d35400);
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+/* Color Helpers */
+.kpi-icon-wrapper.orange { background-color: #fde8d7; color: #d35400; }
+.kpi-icon-wrapper.purple { background-color: #e2e3ff; color: #5a67d8; }
+.kpi-icon-wrapper.green { background-color: #d1f4e0; color: #27a745; }
+.kpi-icon-wrapper.red { background-color: #ffe5e5; color: #d9534f; }
+.kpi-icon-wrapper.orange-light { background-color: #ffe8d6; color: #d35400; }
+
+/* Bar Helpers */
+.bar-15 { height: 15%; }
+.bar-25 { height: 25%; }
+.bar-10 { height: 10%; }
+.bar-5 { height: 5%; }
+.bar-12 { height: 12%; }
+.bar-18 { height: 18%; }
+.fill-0 { width: 0%; }
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .revenue-amount {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-header-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .stats-header-actions button {
+    width: 100%;
+  }
+}

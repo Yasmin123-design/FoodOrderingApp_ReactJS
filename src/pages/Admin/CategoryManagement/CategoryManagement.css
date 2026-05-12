@@ -1,0 +1,119 @@
+.admin-layout {
+  display: flex;
+  min-height: calc(100vh - 80px); /* Assuming header is ~80px */
+  background-color: #f4f6f8;
+  direction: ltr; /* Keeping admin portal LTR for consistency with design */
+}
+
+.admin-content {
+  flex: 1;
+  padding: 2rem 3%;
+}
+
+.admin-header {
+  margin-bottom: 2rem;
+}
+
+.admin-header h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.admin-header p {
+  color: #666;
+}
+
+.category-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.category-add-section {
+  width: 350px;
+  flex-shrink: 0;
+}
+
+.add-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.add-card h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.category-list-section {
+  flex: 1;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Reusing some CSS from login for form */
+.category-form .input-group {
+  margin-bottom: 1.5rem;
+}
+
+.file-upload-box {
+  position: relative;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  background-color: #fafafa;
+  transition: border-color 0.3s;
+  cursor: pointer;
+}
+
+.file-upload-box:hover {
+  border-color: var(--primary-color, #d35400);
+}
+
+.file-upload-box input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-placeholder span {
+  font-size: 2rem;
+}
+
+.upload-placeholder p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+@media (max-width: 1024px) {
+  .category-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .category-add-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-content {
+    padding: 1.5rem;
+  }
+  
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+}
