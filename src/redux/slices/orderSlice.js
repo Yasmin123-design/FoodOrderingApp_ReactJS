@@ -49,7 +49,7 @@ const orderSlice = createSlice({
       .addCase(updateOrderStatus.fulfilled, (state, action) => {
         const index = state.items.findIndex(order => order.id === action.payload.id);
         if (index !== -1) {
-          state.items[index] = action.payload;
+          state.items[index] = { ...state.items[index], ...action.payload };
         }
       });
   },

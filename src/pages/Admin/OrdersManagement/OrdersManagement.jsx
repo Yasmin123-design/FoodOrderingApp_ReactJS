@@ -152,10 +152,10 @@ const OrdersManagement = () => {
                   </td>
                   <td>
                     <div className="user-info">
-                      <div className="avatar">{order.user.name.substring(0, 2).toUpperCase()}</div>
+                      <div className="avatar">{order.user?.name?.substring(0, 2).toUpperCase() || '??'}</div>
                       <div>
-                        <div className="user-name">{order.user.name}</div>
-                        <div className="user-email">{order.user.email}</div>
+                        <div className="user-name">{order.user?.name || 'Unknown'}</div>
+                        <div className="user-email">{order.user?.email || 'N/A'}</div>
                       </div>
                     </div>
                   </td>
@@ -173,8 +173,9 @@ const OrdersManagement = () => {
                     >
                       <option value="PENDING">PENDING</option>
                       <option value="PROCESSING">PROCESSING</option>
-                      <option value="ON_THE_WAY">ON_THE_WAY</option>
+                      <option value="SHIPPED">SHIPPED</option>
                       <option value="DELIVERED">DELIVERED</option>
+                      <option value="CANCELLED">CANCELLED</option>
                     </select>
                   </td>
                   <td>
@@ -204,8 +205,8 @@ const OrdersManagement = () => {
             <div className="details-grid">
               <div className="detail-section">
                 <h4>Customer Info</h4>
-                <p><strong>Name:</strong> {selectedOrder.user.name}</p>
-                <p><strong>Email:</strong> {selectedOrder.user.email}</p>
+                <p><strong>Name:</strong> {selectedOrder.user?.name || 'N/A'}</p>
+                <p><strong>Email:</strong> {selectedOrder.user?.email || 'N/A'}</p>
                 <p><strong>Address:</strong> {selectedOrder.address}</p>
               </div>
               <div className="detail-section">
