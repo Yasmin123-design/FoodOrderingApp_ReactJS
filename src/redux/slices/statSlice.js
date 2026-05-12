@@ -5,7 +5,7 @@ export const fetchStats = createAsyncThunk(
   'stats/fetchStats',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get('/admin/stats');
+      const response = await axiosInstance.get('/admin/dashboard/stats');
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch stats');

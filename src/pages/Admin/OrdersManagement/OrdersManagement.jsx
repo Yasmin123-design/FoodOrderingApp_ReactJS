@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrders } from '../../../redux/slices/orderSlice';
+import { fetchOrders, updateOrderStatus } from '../../../redux/slices/orderSlice';
 import AdminSidebar from '../../../components/AdminSidebar/AdminSidebar';
 import Modal from '../../../components/Modal/Modal';
 import './OrdersManagement.css';
@@ -122,7 +122,8 @@ const OrdersManagement = () => {
         </div>
 
         {/* Orders Table Section */}
-        <div className="table-container">
+        <div className="orders-main-card">
+          <div className="orders-table-wrapper">
           <table className="orders-table">
             <thead>
               <tr>
@@ -165,9 +166,16 @@ const OrdersManagement = () => {
                   </td>
                   <td className="total-amount">{formatCurrency(order.totalAmount)}</td>
                   <td>
-                    <span className={`status-badge ${order.status.toLowerCase()}`}>
-                      {order.status}
-                    </span>
+                    <select 
+                      className={`status-select ${order.status.toLowerCase()}`}
+                      value={order.status}
+                      onChange={(e) => dispatch(updateOrderStatus({ id: order.id, status: e.target.value }))}
+                    >
+                      <option value="PENDING">PENDING</option>
+                      <option value="PROCESSING">PROCESSING</option>
+                      <option value="ON_THE_WAY">ON_THE_WAY</option>
+                      <option value="DELIVERED">DELIVERED</option>
+                    </select>
                   </td>
                   <td>
                     <button className="action-btn view-btn" onClick={() => handleViewOrder(order)}>
@@ -177,7 +185,8 @@ const OrdersManagement = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
           <div className="table-footer">
             <p>Showing {orders.length} orders</p>
           </div>

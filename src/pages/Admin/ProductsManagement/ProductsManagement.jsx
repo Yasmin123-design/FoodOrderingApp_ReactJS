@@ -141,7 +141,7 @@ const ProductsManagement = () => {
         </div>
 
         {/* Filters and Table */}
-        <div className="table-container">
+        <div className="products-main-card">
           <div className="table-controls">
             <div className="search-bar">
               <span className="icon">🔍</span>
@@ -168,8 +168,9 @@ const ProductsManagement = () => {
             </div>
           </div>
 
-          <table className="products-table">
-            <thead>
+          <div className="products-table-wrapper">
+            <table className="products-table">
+              <thead>
               <tr>
                 <th>Product</th>
                 <th>Name (En)</th>
@@ -210,7 +211,8 @@ const ProductsManagement = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
           <div className="table-footer">
             <p>Showing {filteredProducts.length} products</p>
           </div>

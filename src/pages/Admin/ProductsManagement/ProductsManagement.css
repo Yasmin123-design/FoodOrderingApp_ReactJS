@@ -33,6 +33,39 @@
 }
 
 /* Table and Controls */
+.products-main-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.table-controls {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  width: 350px;
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  margin-left: 0.5rem;
+  width: 100%;
+}
+
 .filter-wrapper {
   display: flex;
   align-items: center;
@@ -254,17 +287,21 @@
     gap: 1.5rem;
   }
   
-  .table-container {
+  .products-table-wrapper {
     overflow-x: auto;
   }
   
   .products-table {
-    min-width: 800px;
+    min-width: 1000px;
   }
   
   .table-controls {
     flex-direction: column;
     gap: 1rem;
+  }
+  
+  .search-bar {
+    width: 100%;
   }
   
   .form-row {

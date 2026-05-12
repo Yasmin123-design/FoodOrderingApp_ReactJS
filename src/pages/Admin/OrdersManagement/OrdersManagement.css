@@ -116,11 +116,15 @@
 }
 
 /* Table Section */
-.table-container {
+.orders-main-card {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   overflow: hidden;
+}
+
+.orders-table-wrapper {
+  /* This will be handled in media queries for responsiveness */
 }
 
 .table-controls {
@@ -266,6 +270,46 @@
   color: #721c24;
 }
 
+.status-select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.status-select.pending {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #ffeeba;
+}
+
+.status-select.processing {
+  background-color: #fde8d7;
+  color: var(--primary-color, #d35400);
+  border-color: #f5c6cb;
+}
+
+.status-select.on_the_way {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+
+.status-select.delivered {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.status-select:hover {
+  filter: brightness(0.95);
+}
+
 .action-btn {
   background: none;
   border: none;
@@ -386,4 +430,37 @@
 
 .order-total-summary span {
   color: var(--primary-color, #d35400);
+}
+
+@media (max-width: 1024px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+  .admin-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+  }
+  
+  .orders-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .orders-table {
+    min-width: 1000px;
+  }
+  
+  .search-bar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-header h2 {
+    font-size: 1.5rem;
+  }
 }
