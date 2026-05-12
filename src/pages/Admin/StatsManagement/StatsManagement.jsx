@@ -1,26 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStats } from '../../../redux/slices/statSlice';
+import { fetchOrders } from '../../../redux/slices/orderSlice';
 import AdminSidebar from '../../../components/AdminSidebar/AdminSidebar';
 import './StatsManagement.css';
 
 const StatsManagement = () => {
   const dispatch = useDispatch();
-  const { data, status } = useSelector((state) => state.stats);
+  const { data: apiData, status: statStatus } = useSelector((state) => state.stats);
+  const { items: orders, status: orderStatus } = useSelector((state) => state.orders);
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchStats());
-    }
-  }, [status, dispatch]);
+    if (statStatus === 'idle') dispatch(fetchStats());
+    if (orderStatus === 'idle') dispatch(fetchOrders());
+  }, [statStatus, orderStatus, dispatch]);
 
   const handleRefresh = () => {
     dispatch(fetchStats());
+    dispatch(fetchOrders());
   };
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
   };
+
+  // Calculate Real Data from Orders
+  const dashboardStats = useMemo(() => {
+    const deliveredOrders = orders.filter(o => o.status === 'DELIVERED');
+    const totalRevenue = deliveredOrders.reduce((sum, o) => sum + o.totalAmount, 0);
+
+    // Group by day for the last 6 days
+    const last6Days = [...Array(6)].map((_, i) => {
+      const d = new Date();
+      d.setDate(d.getDate() - (5 - i));
+      return d.toISOString().split('T')[0];
+    });
+
+    const revenueByDay = last6Days.map(day => {
+      const dayTotal = deliveredOrders
+        .filter(o => o.createdAt.split('T')[0] === day)
+        .reduce((sum, o) => sum + o.totalAmount, 0);
+      return {
+        label: new Date(day).toLocaleDateString('en-US', { weekday: 'short' }),
+        value: dayTotal
+      };
+    });
+
+    // Find max for scaling bars
+    const maxVal = Math.max(...revenueByDay.map(d => d.value), 100);
+
+    return { totalRevenue, revenueByDay, maxVal };
+  }, [orders]);
 
   return (
     <div className="admin-layout" dir="ltr">
@@ -33,8 +63,8 @@ const StatsManagement = () => {
           </div>
           <div className="stats-header-actions">
             <button className="btn-secondary">Download Report</button>
-            <button className="btn-primary" onClick={handleRefresh} disabled={status === 'loading'}>
-              {status === 'loading' ? 'Refreshing...' : 'Refresh Data'}
+            <button className="btn-primary" onClick={handleRefresh} disabled={statStatus === 'loading'}>
+              {statStatus === 'loading' ? 'Refreshing...' : 'Refresh Data'}
             </button>
           </div>
         </div>
@@ -47,7 +77,7 @@ const StatsManagement = () => {
             </div>
             <div className="kpi-content">
               <p>Total Orders</p>
-              <h3>{data.totalOrders}</h3>
+              <h3>{apiData.totalOrders}</h3>
               <span className="kpi-trend positive">📈 +50% vs last month</span>
             </div>
           </div>
@@ -57,7 +87,7 @@ const StatsManagement = () => {
             </div>
             <div className="kpi-content">
               <p>Total Products</p>
-              <h3>{data.totalProducts}</h3>
+              <h3>{apiData.totalProducts}</h3>
               <span className="kpi-trend neutral">Active Inventory</span>
             </div>
           </div>
@@ -67,7 +97,7 @@ const StatsManagement = () => {
             </div>
             <div className="kpi-content">
               <p>Total Categories</p>
-              <h3>{data.totalCategories}</h3>
+              <h3>{apiData.totalCategories}</h3>
               <span className="kpi-trend neutral">Structured Hierarchy</span>
             </div>
           </div>
@@ -77,7 +107,7 @@ const StatsManagement = () => {
             </div>
             <div className="kpi-content">
               <p>Total Users</p>
-              <h3>{data.totalUsers}</h3>
+              <h3>{apiData.totalUsers}</h3>
               <span className="kpi-trend positive">👤+ Growing community</span>
             </div>
           </div>
@@ -85,12 +115,11 @@ const StatsManagement = () => {
 
         {/* Bottom Section */}
         <div className="charts-grid">
-          {/* Revenue Chart Simulation */}
           <div className="chart-card">
             <div className="chart-header">
               <div>
-                <p>Total Revenue</p>
-                <h2 className="revenue-amount">{formatCurrency(data.totalRevenue)}</h2>
+                <p>Total Revenue (Delivered)</p>
+                <h2 className="revenue-amount">{formatCurrency(dashboardStats.totalRevenue)}</h2>
               </div>
               <div className="kpi-icon-wrapper orange-light">
                 <span className="icon">💵</span>
@@ -104,19 +133,26 @@ const StatsManagement = () => {
                 <div className="line"></div>
               </div>
               <div className="chart-bars">
-                <div className="bar bar-15"></div>
-                <div className="bar bar-25"></div>
-                <div className="bar bar-10"></div>
-                <div className="bar active bar-5"></div>
-                <div className="bar bar-12"></div>
-                <div className="bar bar-18"></div>
+                {dashboardStats.revenueByDay.map((day, idx) => {
+                  const heightPercentage = Math.max((day.value / dashboardStats.maxVal) * 100, 5);
+                  return (
+                    <div 
+                      key={idx} 
+                      className={`bar ${idx === 5 ? 'active' : ''}`} 
+                      style={{ height: `${heightPercentage}%` }}
+                      title={`${day.label}: ${formatCurrency(day.value)}`}
+                    ></div>
+                  );
+                })}
               </div>
               <div className="chart-x-labels">
-                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                {dashboardStats.revenueByDay.map((day, idx) => (
+                  <span key={idx}>{day.label}</span>
+                ))}
               </div>
             </div>
 
-            {data.totalRevenue === 0 && (
+            {dashboardStats.totalRevenue === 0 && (
               <div className="revenue-warning">
                 <span className="icon alert-icon">⚠️</span>
                 <p>Revenue is currently at $0. Check your payment gateway configurations.</p>
