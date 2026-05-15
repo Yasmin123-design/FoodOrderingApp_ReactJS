@@ -224,6 +224,7 @@ const ProductsManagement = () => {
         isOpen={isFormModalOpen}
         onClose={() => setIsFormModalOpen(false)}
         title={currentProduct ? "Edit Product" : "Add New Product"}
+        maxWidth="800px"
       >
         <form className="product-form" onSubmit={handleFormSubmit}>
           <div className="form-row">

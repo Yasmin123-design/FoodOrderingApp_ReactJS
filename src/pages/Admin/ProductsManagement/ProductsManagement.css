@@ -191,6 +191,7 @@
   border-radius: 6px;
   font-family: inherit;
   font-size: 0.95rem;
+  width: 100%; /* Ensure inputs take full width of container */
 }
 
 .form-group input:focus, 
@@ -285,6 +286,12 @@
   .products-header {
     flex-direction: column;
     gap: 1.5rem;
+    align-items: stretch; /* Make items full width on mobile */
+  }
+
+  .add-product-btn {
+    width: 100%;
+    justify-content: center;
   }
   
   .products-table-wrapper {
