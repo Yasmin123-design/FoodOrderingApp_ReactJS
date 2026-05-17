@@ -292,14 +292,31 @@
 .status-pill.processing, .status-pill.pending { background-color: #ffebee; color: #c62828; }
 .status-pill.on_the_way { background-color: #e3f2fd; color: #1565c0; }
 
-.view-details-link {
+/* View Details Button */
+.view-details-btn {
+  background: transparent;
+  border: none;
   color: #d35400;
-  text-decoration: none;
-  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
 }
 
-.view-details-link:hover {
-  text-decoration: underline;
+.view-details-btn .eye-icon {
+  font-size: 1.2rem;
+}
+
+.view-details-btn:hover {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments for the button */
+@media (max-width: 480px) {
+  .view-details-btn .eye-icon {
+    font-size: 1rem;
+  }
 }
 
 /* Responsiveness */
@@ -359,3 +376,146 @@
     font-size: 0.9rem;
   }
 }
+
+/* --- Premium Order Details Modal Popup Styling --- */
+.order-details-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: inherit;
+  padding: 0.2rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  background: #f8fafc;
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #edf2f7;
+}
+
+.detail-section h4 {
+  margin: 0 0 0.6rem 0;
+  color: #4a5568;
+  font-size: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.detail-section p {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.payment-proof-section {
+  grid-column: span 2;
+  margin-top: 0.5rem;
+}
+
+.payment-proof-img {
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+  margin-top: 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.items-heading {
+  margin: 1.5rem 0 0.5rem 0;
+  color: #2d3748;
+  font-size: 1.05rem;
+  border-bottom: 2px solid var(--primary-color, #d35400);
+  padding-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.order-items-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.order-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.order-item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name-qty {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.item-name {
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 0.95rem;
+}
+
+.item-qty {
+  color: #718096;
+  font-size: 0.85rem;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.order-total-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px dashed #e2e8f0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.total-val {
+  color: var(--primary-color, #d35400);
+  font-size: 1.3rem;
+}
+
+/* Custom Scrollbar for list */
+.order-items-list::-webkit-scrollbar {
+  width: 6px;
+}
+.order-items-list::-webkit-scrollbar-track {
+  background: #f7fafc;
+}
+.order-items-list::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
+}
+.order-items-list::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* Responsive Modal Styling */
+@media (max-width: 580px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .payment-proof-section {
+    grid-column: span 1;
+  }
+}
+

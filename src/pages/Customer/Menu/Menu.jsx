@@ -4,6 +4,7 @@ import { fetchCustomerMenu, searchProducts, clearSearch } from '../../../redux/s
 import { fetchMyOrders } from '../../../redux/slices/customerOrderSlice';
 import { addToCart } from '../../../redux/slices/cartSlice';
 import CustomerSidebar from '../../../components/CustomerSidebar/CustomerSidebar';
+import Modal from '../../../components/Modal/Modal';
 import './Menu.css';
 
 const Menu = () => {
@@ -34,7 +35,13 @@ const Menu = () => {
   };
 
   const [notification, setNotification] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleViewOrder = (order) => {
+    setSelectedOrder(order);
+    setIsModalOpen(true);
+  };
   const handleAddToCart = (product) => {
     dispatch(addToCart(product))
       .unwrap()
@@ -175,7 +182,9 @@ const Menu = () => {
                     <span className={`status-pill ${order.status.toLowerCase()}`}>{order.status}</span>
                   </td>
                   <td>
-                    <a href="/my-orders" className="view-details-link">View Details</a>
+                    <button type="button" className="view-details-btn" onClick={() => handleViewOrder(order)} aria-label="View Details">
+                      <span className="eye-icon">👁️</span>
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -186,6 +195,54 @@ const Menu = () => {
           </table>
         </div>
       </div>
+
+      {/* Order Details Modal Popup */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={`Order Details: #${selectedOrder ? selectedOrder.id.substring(0,8).toUpperCase() : ''}`}
+      >
+        {selectedOrder && (
+          <div className="order-details-modal">
+            <div className="details-grid">
+              <div className="detail-section">
+                <h4>Order Info</h4>
+                <p><strong>Date:</strong> {new Date(selectedOrder.createdAt).toLocaleString()}</p>
+                <p><strong>Status:</strong> <span className={`status-pill ${selectedOrder.status.toLowerCase()}`}>{selectedOrder.status}</span></p>
+                <p><strong>Payment:</strong> {selectedOrder.paymentMethod}</p>
+              </div>
+              <div className="detail-section">
+                <h4>Delivery Address</h4>
+                <p>{selectedOrder.address}</p>
+              </div>
+              {selectedOrder.paymentMethod === 'ONLINE' && selectedOrder.paymentProof && (
+                <div className="payment-proof-section">
+                  <h4>Payment Proof</h4>
+                  <div className="payment-proof-img" style={{ backgroundImage: `url(${selectedOrder.paymentProof})` }}></div>
+                </div>
+              )}
+            </div>
+
+            <h4 className="items-heading">Order Items</h4>
+            <div className="order-items-list">
+              {selectedOrder.orderItems?.length > 0 ? selectedOrder.orderItems.map(item => (
+                <div key={item.id} className="order-item-row">
+                  <div className="item-name-qty">
+                    <span className="item-name">{item.product?.nameEn || 'Unknown Item'}</span>
+                    <span className="item-qty">x {item.quantity}</span>
+                  </div>
+                  <div className="item-price">{item.price * item.quantity} SAR</div>
+                </div>
+              )) : <p>No items found in this order.</p>}
+            </div>
+            
+            <div className="order-total-summary">
+              <span>Total Amount:</span>
+              <span className="total-val">{selectedOrder.totalAmount} SAR</span>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
